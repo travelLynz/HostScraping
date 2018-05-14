@@ -47,6 +47,7 @@ public class ScrapingInfo
 				if(verifiedElWhishGuideSocial.contains("Whish List")) {
 					String wl = verifiedElWhishGuideSocial.split("Wish List (")[1].split(")")[0];
 					h.setWhishListNumber(Integer.parseInt(wl));
+					System.out.println(wl);
 				}
 //				if(verifiedElWhishGuideSocial.contains("Guide")) {
 //					String g = verifiedElWhishGuideSocial.split("Guide (")[1].split(")")[0];

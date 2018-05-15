@@ -94,6 +94,14 @@ public class ScrapingInfo
 			}
 
 			System.out.println(h.toString());
+			int sec = (int)(Math.random()*((60-10)+10)*1000);
+			System.out.println("Wait for "+sec +" milliseconds");
+			try {
+				Thread.sleep(sec);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }

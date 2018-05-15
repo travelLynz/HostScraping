@@ -13,13 +13,24 @@ public class Host {
 	private LinkedList<String> linkedAccountVerified;
 	private String schoolInfo;
 	private String jobInfo;
+	private String languages;
 	private int reviewNumber;
 	private int guideNumber;
 	private int whishListNumber;
 
 	public Host() {
 		super();
-		// TODO Auto-generated constructor stub
+		name = "null";
+		city = "null";
+		membershipDate = "null";
+		description = "null";
+		linkedAccountVerified = new LinkedList<String>();
+		schoolInfo = "null";
+		jobInfo = "null";
+		languages = "null";
+		reviewNumber = 0;
+		guideNumber = 0;
+		whishListNumber = 0;
 	}
 	public String getName() {
 		return name;
@@ -57,7 +68,7 @@ public class Host {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	public String getSchoolInfo() {
 		return schoolInfo;
 	}
@@ -88,19 +99,26 @@ public class Host {
 	public void setWhishListNumber(int whishListNumber) {
 		this.whishListNumber = whishListNumber;
 	}
-	
+
 	public LinkedList<String> getLinkedAccountVerified() {
 		return linkedAccountVerified;
 	}
 	public void setLinkedAccountVerified(LinkedList<String> linkedAccountVerified) {
 		this.linkedAccountVerified = linkedAccountVerified;
 	}
+	public String getLanguages() {
+		return languages;
+	}
+	public void setLanguages(String languages) {
+		this.languages = languages;
+	}
 	@Override
 	public String toString() {
 		return "Host [name=" + name + ", city=" + city + ", membershipDate=" + membershipDate + ", superhost="
-				+ superhost + ", verified=" + verified + ", description=" + description + ", linkedAccountVerified=("
-				+ linkedAccountVerified.toString() + "), schoolInfo=" + schoolInfo + ", jobInfo=" + jobInfo + ", reviewNumber="
-				+ reviewNumber + ", guideNumber=" + guideNumber + ", whishListNumber=" + whishListNumber + "]";
+				+ superhost + ", verified=" + verified + ", description=" + description + ", linkedAccountVerified="
+				+ linkedAccountVerified + ", schoolInfo=" + schoolInfo + ", jobInfo=" + jobInfo + ", languages="
+				+ languages + ", reviewNumber=" + reviewNumber + ", guideNumber=" + guideNumber + ", whishListNumber="
+				+ whishListNumber + "]";
 	}
 
 

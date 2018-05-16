@@ -25,21 +25,21 @@ public class ScrapingInfo
 	{
 		
 		StringBuilder res = new StringBuilder();
-		String filenameIn = new File("").getAbsolutePath()+"/idHost.csv";
+		String filenameIn = new File("").getAbsolutePath()+"/idGuest.csv";
 		FileHandler.setFileHandler(filenameIn, null);
-		LinkedList<String> hostIds = new LinkedList<String>(); //Arrays.asList("26831919","4326883")
+		LinkedList<String> ids = new LinkedList<String>(); //Arrays.asList("26831919","4326883")
 		String s="";
 		while((s=FileHandler.readFile())!=null) 
-			hostIds.add(s);
+			ids.add(s);
 		
 		FileHandler.closeFile();
 		int c=0;
-		for(String hostId: hostIds){
+		for(String id: ids){
 			c++;
 			Document doc;
 			Host h = new Host();
 			try {
-				doc = Jsoup.connect("https://www.airbnb.it/users/show/"+hostId).get();
+				doc = Jsoup.connect("https://www.airbnb.it/users/show/"+id).get();
 
 				Elements newsHeadlines = doc.select("main");
 				for (Element headline : newsHeadlines) {
@@ -124,6 +124,6 @@ public class ScrapingInfo
 				+ " jobInfo == languages == reviewNumber == guideNumber == whishListNumber";
 	
 		FileWriter.writeCSV(res, filenameOut , header);
-		System.out.println("File ou.csv written");
+		System.out.println("File out.csv written");
 	}
 }

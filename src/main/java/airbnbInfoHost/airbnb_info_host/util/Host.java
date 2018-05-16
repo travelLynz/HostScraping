@@ -114,11 +114,9 @@ public class Host {
 	}
 	@Override
 	public String toString() {
-		return "Host [name=" + name + ", city=" + city + ", membershipDate=" + membershipDate + ", superhost="
-				+ superhost + ", verified=" + verified + ", description=" + description + ", linkedAccountVerified="
-				+ linkedAccountVerified + ", schoolInfo=" + schoolInfo + ", jobInfo=" + jobInfo + ", languages="
-				+ languages + ", reviewNumber=" + reviewNumber + ", guideNumber=" + guideNumber + ", whishListNumber="
-				+ whishListNumber + "]";
+		return  name + "==" + city + "==" + membershipDate  + "==" + superhost + "==" + 
+				verified+ "==" +description+ "==" + linkedAccountVerified + "==" + schoolInfo+ "==" +
+				jobInfo+ "==" + languages+ "==" +reviewNumber+ "==" + guideNumber+ "==" + whishListNumber;
 	}
 
 

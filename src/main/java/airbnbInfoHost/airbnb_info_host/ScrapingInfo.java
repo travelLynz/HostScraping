@@ -1,5 +1,6 @@
 package airbnbInfoHost.airbnb_info_host;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -10,6 +11,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import airbnbInfoHost.airbnb_info_host.util.Constants;
+import airbnbInfoHost.airbnb_info_host.util.FileHandler;
+import airbnbInfoHost.airbnb_info_host.util.FileWriter;
 import airbnbInfoHost.airbnb_info_host.util.Host;
 
 /**
@@ -20,9 +23,19 @@ public class ScrapingInfo
 {
 	public static void main( String[] args )
 	{
-		LinkedList<String> hostIds = new LinkedList<String>(Arrays.asList("26831919","4326883"));
-
+		
+		StringBuilder res = new StringBuilder();
+		String filenameIn = new File("").getAbsolutePath()+"/idHost.csv";
+		FileHandler.setFileHandler(filenameIn, null);
+		LinkedList<String> hostIds = new LinkedList<String>(); //Arrays.asList("26831919","4326883")
+		String s="";
+		while((s=FileHandler.readFile())!=null) 
+			hostIds.add(s);
+		
+		FileHandler.closeFile();
+		int c=0;
 		for(String hostId: hostIds){
+			c++;
 			Document doc;
 			Host h = new Host();
 			try {
@@ -93,15 +106,24 @@ public class ScrapingInfo
 				e.printStackTrace();
 			}
 
-			System.out.println(h.toString());
+		
+			res.append(h.toString()+"\n");
 			int sec = (int)(Math.random()*((60-10)+10)*1000);
-			System.out.println("Wait for "+sec +" milliseconds");
+			System.out.println(c+") Wait for "+sec +" milliseconds");
 			try {
 				Thread.sleep(sec);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+						
 		}
+		String filenameOut = new File("").getAbsolutePath()+"/out.csv";
+		String header = "name == city == membershipDate == superhost =="
+				+ " verified == description == linkedAccountVerified == schoolInfo =="
+				+ " jobInfo == languages == reviewNumber == guideNumber == whishListNumber";
+	
+		FileWriter.writeCSV(res, filenameOut , header);
+		System.out.println("File ou.csv written");
 	}
 }

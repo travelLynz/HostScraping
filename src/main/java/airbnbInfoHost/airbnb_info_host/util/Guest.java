@@ -2,8 +2,9 @@ package airbnbInfoHost.airbnb_info_host.util;
 
 import java.util.LinkedList;
 
-public class Host {
+public class Guest {
 
+	private String id;
 	private String name;
 	private String city;
 	private String membershipDate;
@@ -18,8 +19,9 @@ public class Host {
 	private int guideNumber;
 	private int whishListNumber;
 
-	public Host() {
+	public Guest() {
 		super();
+		id = "null";
 		name = "null";
 		city = "null";
 		membershipDate = "null";
@@ -114,9 +116,15 @@ public class Host {
 	}
 	@Override
 	public String toString() {
-		return  name + "==" + city + "==" + membershipDate  + "==" + superhost + "==" + 
+		return  id + "==" + name + "==" + city + "==" + membershipDate  + "==" + superhost + "==" + 
 				verified+ "==" +description+ "==" + linkedAccountVerified + "==" + schoolInfo+ "==" +
 				jobInfo+ "==" + languages+ "==" +reviewNumber+ "==" + guideNumber+ "==" + whishListNumber;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 
 

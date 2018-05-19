@@ -13,7 +13,7 @@ import org.jsoup.select.Elements;
 import airbnbInfoHost.airbnb_info_host.util.Constants;
 import airbnbInfoHost.airbnb_info_host.util.FileHandler;
 import airbnbInfoHost.airbnb_info_host.util.FileWriter;
-import airbnbInfoHost.airbnb_info_host.util.Host;
+import airbnbInfoHost.airbnb_info_host.util.Guest;
 
 /**
  * Hello world!
@@ -37,13 +37,16 @@ public class ScrapingInfo
 		for(String id: ids){
 			c++;
 			Document doc;
-			Host h = new Host();
+			Guest h = new Guest();
 			try {
 				doc = Jsoup.connect("https://www.airbnb.it/users/show/"+id).get();
 
 				Elements newsHeadlines = doc.select("main");
 				for (Element headline : newsHeadlines) {
 
+					//id
+					h.setId(id);
+					
 					//name
 					String name= headline.select("h1").html().replace(Constants.GREETING, "").replace("!", "");
 					h.setName(name);
@@ -119,7 +122,7 @@ public class ScrapingInfo
 						
 		}
 		String filenameOut = new File("").getAbsolutePath()+"/out.csv";
-		String header = "name == city == membershipDate == superhost =="
+		String header = "id == name == city == membershipDate == superhost =="
 				+ " verified == description == linkedAccountVerified == schoolInfo =="
 				+ " jobInfo == languages == reviewNumber == guideNumber == whishListNumber";
 	

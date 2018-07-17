@@ -13,4 +13,14 @@ public static void writeCSV(StringBuilder sb,String name,String header) {
 	f.closeFile();
 }
 
+@SuppressWarnings("static-access")
+public static FileHandler addCSV(String name,String header) {
+	FileHandler f = new FileHandler();
+	f.setFileHandler(null,name);
+	f.writeFileLine(header);	
+	return f;
+	
+}
+
+
 }

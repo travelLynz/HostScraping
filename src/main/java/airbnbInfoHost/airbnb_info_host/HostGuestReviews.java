@@ -19,10 +19,10 @@ import airbnbInfoHost.airbnb_info_host.util.HostGuestReview;
  */
 public class HostGuestReviews 
 {
+	@SuppressWarnings("static-access")
 	public static void main( String[] args )
 	{
 		
-		StringBuilder res = new StringBuilder();
 		String filenameIn = new File("").getAbsolutePath()+"/guests.csv";
 		FileHandler.setFileHandler(filenameIn, null);
 		LinkedList<String> ids = new LinkedList<String>(); //Arrays.asList("26831919","4326883")
@@ -32,7 +32,14 @@ public class HostGuestReviews
 		
 		FileHandler.closeFile();
 		int c=0;
+		
+		
+		String filenameOut = new File("").getAbsolutePath()+"/revout.csv";
+		String header = "guestId == hostId == hostName == month == year == comments == totalReviewsFromHosts";
+	
+		FileHandler o = FileWriter.addCSV(filenameOut , header);
 		for(String id: ids){
+			StringBuilder res = new StringBuilder();
 			c++;
 			Document doc;
 			HostGuestReview rev = new HostGuestReview();
@@ -50,7 +57,9 @@ public class HostGuestReviews
 					//totalNumberOfReviews
 					int totalNumberOfReviews = guestReviews.size();
 					rev.setTotalReviewsFromHosts(totalNumberOfReviews);
-
+					
+					//revCounter 
+					int revCounter = 0;
 					for (Element review : guestReviews) {	
 						
 						Elements top_review = review.getElementsByClass("col-md-2 col-sm-12");
@@ -82,7 +91,11 @@ public class HostGuestReviews
 						String comments = bottom_review.text();
 						rev.setComments(comments);
 						
-						res.append(rev.toString()+"\n");
+						revCounter++;
+						if (revCounter < totalNumberOfReviews ) 
+							res.append(rev.toString()+"\n");
+						else 
+							res.append(rev.toString());
 
 					}
 
@@ -103,12 +116,12 @@ public class HostGuestReviews
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			if (res.length() != 0) 
+				o.writeFileLine(res.toString());
 						
 		}
-		String filenameOut = new File("").getAbsolutePath()+"/revout.csv";
-		String header = "guestId == hostId == hostName == month == year == comments == totalReviewsFromHost";
-	
-		FileWriter.writeCSV(res, filenameOut , header);
+		o.closeFile();
 		System.out.println("File revout.csv written");
 	}
 }

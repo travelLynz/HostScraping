@@ -61,7 +61,9 @@ public class DownloadImage {
 					doc = Jsoup.connect("https://www.airbnb.it/users/show/"+id).get();
 
 					String img=doc.select("main").first().getElementsByClass("img-responsive").attr("src");
-
+					if (img == "") {
+						img=doc.select("main").first().getElementsByClass("_12r18es").attr("src");
+					}
 					URL url = new URL(img);
 
 					InputStream in = new BufferedInputStream(url.openStream());
